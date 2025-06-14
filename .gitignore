@@ -30,11 +30,9 @@ build/
 *.local
 
 # Prisma-related
-prisma/dev.db        # If using SQLite for development
-prisma/*.db-journal  # SQLite journal files
-prisma/migrations/   # Optional: ignore if you're not committing migrations
-prisma/generated/    # If you generate Prisma client elsewhere (e.g., custom path)
-generated/prisma/    # Based on your entry
+backend/prisma/migrations/   
+backend/prisma/generated/    
+backend/generated/prisma/ 
 
 # OS-specific
 .DS_Store
