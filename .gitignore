@@ -7,25 +7,48 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Runtime files
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+.out/
+.next/
+build/
+.cache/
+
+# Environment variables
+.env
+.env.*.local
 *.local
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Prisma-related
+prisma/dev.db        # If using SQLite for development
+prisma/*.db-journal  # SQLite journal files
+prisma/migrations/   # Optional: ignore if you're not committing migrations
+prisma/generated/    # If you generate Prisma client elsewhere (e.g., custom path)
+generated/prisma/    # Based on your entry
+
+# OS-specific
 .DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+!.vscode/extensions.json
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
 
-
-node_modules
-# Keep environment variables out of version control
-.env
-
-/generated/prisma
+# Optional: TypeScript cache
+*.tsbuildinfo
