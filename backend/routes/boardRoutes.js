@@ -3,6 +3,9 @@ const { PrismaClient } = require("@prisma/client");
 const { validateBoardBody } = require("../middleware/validate");
 const { NotFoundError } = require("../middleware/CustomErrors");
 
+// import categories from constants
+const CATEGORIES = require("../utils/constants");
+
 const prisma = new PrismaClient();
 const router = express.Router();
 
@@ -37,6 +40,9 @@ router.get("/:id", async (req, res, next) => {
 router.post("/", validateBoardBody, async (req, res, next) => {
   try {
     const { title, category, author, imageUrl } = req.body;
+    if (!CATEGORIES.includes(category)) {
+      return res.status(400).json({ error: "Invalid category" });
+    }
     const board = await prisma.board.create({
       data: { title, category, author, imageUrl },
     });
