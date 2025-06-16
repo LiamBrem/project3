@@ -56,6 +56,7 @@ router.delete("/:cardId", async (req, res, next) => {
     const card = await prisma.card.delete({
       where: { id: parseInt(req.params.cardId) },
     });
+    if (!card) return res.status(404).json({ error: "Card not found" });
     res.json(card);
   } catch (err) {
     next(err);

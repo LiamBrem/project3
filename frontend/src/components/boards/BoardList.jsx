@@ -29,15 +29,24 @@ const BoardList = ({ searchCriteria, sortCriteria }) => {
     getBoardData();
   }, [searchCriteria, sortCriteria]);
 
+  const handleDelete = (id) => {
+    // redisplay the boards - it already got deleted from the backend
+    setDisplayBoardData((prevBoards) =>
+      prevBoards.filter((board) => board.id !== id)
+    );
+  }
+
 
   return (
     <section className="board-list">
       {displayBoardData.map((board) => (
         <BoardCard
             key={board.id}
+            id={board.id}
           title={board.title}
           author={board.author}
           imageUrl={board.imageUrl}
+          onDelete={() => handleDelete(board.id)}
         />
       ))}
     </section>
