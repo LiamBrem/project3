@@ -39,9 +39,13 @@ router.get("/:id", async (req, res, next) => {
 // POST /api/boards
 router.post("/", validateBoardBody, async (req, res, next) => {
   try {
-    const { title, category, author, imageUrl } = req.body;
+    const { title, category, author, imageUrl: initialImageUrl } = req.body;
+    let imageUrl = initialImageUrl;
     if (!CATEGORIES.includes(category)) {
       return res.status(400).json({ error: "Invalid category" });
+    }
+    if (imageUrl === "" || !imageUrl) {
+      imageUrl = "https://picsum.photos/200/300";
     }
     const board = await prisma.board.create({
       data: { title, category, author, imageUrl },
