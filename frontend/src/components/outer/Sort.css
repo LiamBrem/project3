@@ -1,0 +1,31 @@
+.sort-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-start; 
+}
+
+.sort-container select {
+  width: 100%;
+  padding: 8px 16px;
+  border: 2px solid #0355ba;
+  background-color: #232323;
+  color: #fff;
+  font-size: 1.1em;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  appearance: none;
+  cursor: pointer;
+}
+
+.sort-container select:focus,
+.sort-container select:hover {
+  border-color: #0355ba;
+  box-shadow: 0 0 8px #001c6f;
+}
+
+.sort-container option {
+  background: #232323;
+  color: #fff;
+}

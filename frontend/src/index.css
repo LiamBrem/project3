@@ -1,0 +1,30 @@
+* {
+  border-radius: 6px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #313131;
+  color: white;
+}
+
+button {
+  display: block;
+  width: 10%;
+  padding: 1rem;
+  margin: 1rem auto;
+  background-color: #0355ba;
+  color: white;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #001c6f;
+  scale: 1.05;
+}
