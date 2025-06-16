@@ -24,6 +24,7 @@ router.get("/", async (req, res, next) => {
 
 // GET /api/boards/:id
 router.get("/:id", async (req, res, next) => {
+  console.log("DELETE");
   try {
     const board = await prisma.board.findUnique({
       where: { id: parseInt(req.params.id) },
