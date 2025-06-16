@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const errorHandler = require("./middleware/errorHandler");
 
+const cors = require("cors");
+app.use(cors());
+
 const PORT = process.env.PORT || 3000;
 
 const boardRoutes = require("./routes/boardRoutes");
@@ -10,9 +13,13 @@ const commentRoutes = require("./routes/commentRoutes");
 
 app.use(express.json());
 
+app.get("/", (req, res) => {
+    res.send("Welcome to the Board API");
+});
+
 app.use("/api/boards", boardRoutes);
-app.use("/api/cards", cardRoutes);
-app.use("/api/comments", commentRoutes);
+app.use("/api/boards/:boardId/cards", cardRoutes);
+app.use("/api/boards/:boardId/cards/:cardId/comments", commentRoutes);
 
 app.use(errorHandler);
 
