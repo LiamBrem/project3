@@ -14,7 +14,7 @@ const fetchBoardData = async (searchCriteria, sortCriteria) => {
   return data;
 };
 
-const BoardList = ({ searchCriteria, sortCriteria }) => {
+const BoardList = ({ searchCriteria, sortCriteria, refresh }) => {
   const [displayBoardData, setDisplayBoardData] = useState([]);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const BoardList = ({ searchCriteria, sortCriteria }) => {
       }
     };
     getBoardData();
-  }, [searchCriteria, sortCriteria]);
+  }, [searchCriteria, sortCriteria, refresh]);
 
   const handleDelete = (id) => {
     // redisplay the boards - it already got deleted from the backend

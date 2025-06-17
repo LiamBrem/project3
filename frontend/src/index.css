@@ -10,8 +10,6 @@ body {
 }
 
 button {
-  display: block;
-  width: 10%;
   padding: 1rem;
   margin: 1rem auto;
   background-color: #0355ba;
@@ -27,4 +25,10 @@ button {
 button:hover {
   background-color: #001c6f;
   scale: 1.05;
+  cursor: pointer;
+}
+
+
+* .react-icons {
+  font-size: 2em;
 }

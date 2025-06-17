@@ -6,4 +6,10 @@ export const SORT_OPTIONS = {
   INSPIRATION: "Inspiration",
 };
 
+export const CATEGORIES = [
+  "celebration",
+  "thankYou",
+  "inspiration",
+];
+
 export const CONNECTION_URL = "http://localhost:3000";

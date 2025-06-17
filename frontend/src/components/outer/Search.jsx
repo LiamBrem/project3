@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import { VscSearch } from "react-icons/vsc";
 import { VscCircleSlash } from "react-icons/vsc";
 import "./Search.css";
 
@@ -21,7 +21,7 @@ const Search = ({ onSearch }) => {
         onChange={(e) => setInput(e.target.value)}
       />
       <button type="submit" className="search-button">
-        <FaSearch />
+        <VscSearch />
       </button>
       <button
         type="clear"
