@@ -1,9 +1,9 @@
 export const SORT_OPTIONS = {
-  ALL: "All",
-  RECENT: "Recent",
-  CELEBRAION: "Celebration",
-  THANK_YOU: "Thank You",
-  INSPIRATION: "Inspiration",
+  ALL: "all",
+  RECENT: "recent",
+  CELEBRATION: "celebration",
+  THANK_YOU: "thankYou",
+  INSPIRATION: "inspiration",
 };
 
 export const CATEGORIES = [

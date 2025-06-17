@@ -4,7 +4,7 @@ import { CONNECTION_URL } from "../../utils/constants";
 import "./boardList.css";
 
 const fetchBoardData = async (searchCriteria, sortCriteria) => {
-  let url = `${CONNECTION_URL}/api/boards`;
+  let url = `${CONNECTION_URL}/api/boards?searchCriteria=${searchCriteria}&sortCriteria=${sortCriteria}`;
 
   const response = await fetch(url);
   if (!response.ok) {
@@ -35,7 +35,6 @@ const BoardList = ({ searchCriteria, sortCriteria, refresh }) => {
       prevBoards.filter((board) => board.id !== id)
     );
   }
-
 
   return (
     <section className="board-list">

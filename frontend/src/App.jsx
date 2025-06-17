@@ -9,7 +9,7 @@ import { VscAdd } from "react-icons/vsc";
 
 function App() {
   const [search, setSearch] = useState("");
-  const [sort, setSort] = useState(SORT_OPTIONS.DEFAULT);
+  const [sort, setSort] = useState(SORT_OPTIONS.ALL);
   const [isModalOpen, setModalOpen] = useState(false);
   const [refreshBoards, setRefreshBoards] = useState(false);
 
