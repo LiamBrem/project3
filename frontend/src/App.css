@@ -5,6 +5,37 @@
   text-shadow: white 0 0 10px, white 0 0 20px, white 0 0 30px;
 }
 
+.banner-second-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  font-size: 1.2em;
+}
+
+.add-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background: #0355ba;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 2rem;
+  transition: background 0.2s;
+}
+
 .controls {
   padding: 20px;
   display: flex;
@@ -14,8 +45,8 @@
   max-width: 30%;
 }
 
-.content{
-    min-height: 65vh;
+.content {
+  min-height: 65vh;
 }
 
 .rain {
@@ -52,7 +83,8 @@
 
 .controls,
 .title-container,
-.header {
+.header,
+.banner-second-row {
   position: relative;
   z-index: 1;
 }
