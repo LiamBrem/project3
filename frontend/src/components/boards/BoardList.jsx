@@ -1,5 +1,6 @@
 import BoardCard from "./BoardCard";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { CONNECTION_URL } from "../../utils/constants";
 import "./boardList.css";
 
@@ -16,6 +17,7 @@ const fetchBoardData = async (searchCriteria, sortCriteria) => {
 
 const BoardList = ({ searchCriteria, sortCriteria, refresh }) => {
   const [displayBoardData, setDisplayBoardData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getBoardData = async () => {
@@ -34,18 +36,23 @@ const BoardList = ({ searchCriteria, sortCriteria, refresh }) => {
     setDisplayBoardData((prevBoards) =>
       prevBoards.filter((board) => board.id !== id)
     );
+  };
+
+  const handleBoardOnClick = (id) => {
+    navigate(`/boards/${id}/cards/`);
   }
 
   return (
     <section className="board-list">
       {displayBoardData.map((board) => (
         <BoardCard
-            key={board.id}
-            id={board.id}
+          key={board.id}
+          id={board.id}
           title={board.title}
           author={board.author}
           imageUrl={board.imageUrl}
           onDelete={() => handleDelete(board.id)}
+          onClick={() => handleBoardOnClick(board.id)}
         />
       ))}
     </section>

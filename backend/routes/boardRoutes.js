@@ -12,8 +12,9 @@ const router = express.Router();
 // GET /api/boards
 router.get("/", async (req, res, next) => {
   const { searchCriteria, sortCriteria } = req.query;
-  console.log(searchCriteria, sortCriteria);
   try {
+    const isRecent =
+      sortCriteria && sortCriteria.trim().toLowerCase() === "recent";
     const where = {
       ...(searchCriteria &&
         searchCriteria.trim() !== "" && {
@@ -22,17 +23,19 @@ router.get("/", async (req, res, next) => {
             mode: "insensitive",
           },
         }),
-      ...(sortCriteria &&
-        sortCriteria.trim().toUpperCase() !== "ALL" &&
+      ...(!isRecent &&
+        sortCriteria &&
+        sortCriteria.trim().toLowerCase() !== "all" &&
+        sortCriteria.trim().toLowerCase() !== "recent" &&
         sortCriteria.trim() !== "" && {
           category: sortCriteria,
         }),
     };
-    console.log("WHERE:", where);
     const boards = await prisma.board.findMany({
       where,
       include: { cards: true },
       orderBy: { createdAt: "desc" },
+      ...(isRecent && { take: 6 }),
     });
     res.json(boards);
   } catch (err) {

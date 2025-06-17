@@ -37,7 +37,7 @@ router.post("/", validateCardBody, async (req, res, next) => {
   }
 });
 
-// PUT /api/cards/:cardId/upvote
+// PUT /api/boards/:boardId/cards/:cardId/upvote
 router.put("/:cardId/upvote", async (req, res, next) => {
   try {
     const card = await prisma.card.update({
@@ -50,7 +50,7 @@ router.put("/:cardId/upvote", async (req, res, next) => {
   }
 });
 
-// DELETE /api/cards/:cardId
+// DELETE /api/boards/:boardId/cards/:cardId
 router.delete("/:cardId", async (req, res, next) => {
   try {
     const card = await prisma.card.delete({
