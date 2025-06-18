@@ -3,7 +3,7 @@ import { VscTrash } from "react-icons/vsc";
 import { VscPinned } from "react-icons/vsc";
 import { VscPinnedDirty } from "react-icons/vsc";
 import { CONNECTION_URL } from "../../utils/constants";
-import "./boardCard.css";
+import "./BoardCard.css";
 
 const BoardCard = ({ id, title, author, imageUrl, onDelete, onClick }) => {
   const [isPinned, setIsPinned] = useState(false);
