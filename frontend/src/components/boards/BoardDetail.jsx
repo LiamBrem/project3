@@ -6,12 +6,15 @@ import { VscChevronLeft } from "react-icons/vsc";
 import { VscAdd } from "react-icons/vsc";
 import "./boardDetail.css";
 import CardModal from "../modal/CardModal";
+import CommentModal from "../modal/CommentModal";
 
 const BoardDetail = () => {
   const { id } = useParams();
   const [cards, setCards] = useState([]);
   const [board, setBoard] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCommentModalOpen, setIsCommentModalOpen] = useState(false);
+  const [activeCard, setActiveCard] = useState(null);
 
   const boardId = id;
 
@@ -22,27 +25,31 @@ const BoardDetail = () => {
       .then(setBoard);
 
     // fetch board's cards
-    fetch(`${CONNECTION_URL}/api/boards/${boardId}/cards/?${boardId}`)
+    fetch(`${CONNECTION_URL}/api/boards/${boardId}/cards/`)
       .then((res) => res.json())
       .then(setCards);
-  }, [cards]);
+  }, [boardId]);
 
   const handleDelete = (id) => {
     // redisplay the boards - it already got deleted from the backend
     setCards((prevCards) => prevCards.filter((card) => card.id !== id));
   };
 
-  const handleClick = (id) => {
-    console.log("Card clicked:", id);
+  const handleClick = (e) => {
+    e.stopPropagation();
+    setIsCommentModalOpen(true);
   };
 
   const handleModalSubmit = async (data) => {
     try {
-      const response = await fetch(`${CONNECTION_URL}/api/boards/${boardId}/cards`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `${CONNECTION_URL}/api/boards/${boardId}/cards`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
       if (!response.ok) {
         throw new Error("Failed to add card");
       }
@@ -52,6 +59,11 @@ const BoardDetail = () => {
     } catch (err) {
       alert("Failed to add card.");
     }
+  };
+  
+  const handleCommentClick = (card) => {
+    setActiveCard(card);
+    setIsCommentModalOpen(true);
   };
 
   if (!board) return <div>Loading...</div>;
@@ -82,7 +94,7 @@ const BoardDetail = () => {
             gifUrl={card.gifUrl}
             upvotes={card.upvotes}
             onDelete={handleDelete}
-            onClick={handleClick}
+            onCommentClick={() => handleCommentClick(card)}
           />
         ))}
       </section>
@@ -92,6 +104,18 @@ const BoardDetail = () => {
         onClose={() => setIsModalOpen(false)}
         onSubmit={handleModalSubmit}
       />
+
+      {activeCard && (
+        <CommentModal
+          isOpen={isCommentModalOpen}
+          onClose={() => setActiveCard(null)}
+          title={activeCard.message}
+          gifUrl={activeCard.gifUrl}
+          cardAuthor={activeCard.author}
+          cardId={activeCard.id}
+          boardId={boardId}
+        />
+      )}
     </div>
   );
 };

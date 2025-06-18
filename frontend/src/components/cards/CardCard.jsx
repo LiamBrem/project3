@@ -11,7 +11,7 @@ const CardCard = ({
   gifUrl,
   upvotes,
   onDelete,
-  onClick,
+  onCommentClick,
 }) => {
   const [localUpvotes, setLocalUpvotes] = useState(upvotes); 
 
@@ -41,8 +41,10 @@ const CardCard = ({
     }
   };
 
+
+
   return (
-    <article className="card-card" onClick={onClick}>
+    <article className="card-card" onClick={onCommentClick}>
       <img src={gifUrl} alt={"card gif"} />
       <div className="card-card-header">
         <h1 className="card-message">{message}</h1>
