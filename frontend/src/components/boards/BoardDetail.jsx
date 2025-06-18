@@ -80,6 +80,7 @@ const BoardDetail = () => {
             message={card.message}
             author={card.author}
             gifUrl={card.gifUrl}
+            upvotes={card.upvotes}
             onDelete={handleDelete}
             onClick={handleClick}
           />
