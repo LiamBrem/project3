@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Modal.css";
 import { VscClose } from "react-icons/vsc";
+import GifSearch from "./GifSearch";
 
 const CardModal = ({ isOpen, onClose, onSubmit }) => {
   const [title, setTitle] = useState("");
@@ -41,6 +42,7 @@ const CardModal = ({ isOpen, onClose, onSubmit }) => {
               required
             />
           </label>
+          <GifSearch onGifSelect={setGifUrl} />
           <label>
             GIF URL:
             <input
