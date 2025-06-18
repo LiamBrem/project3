@@ -23,6 +23,7 @@ router.get("/", async (req, res, next) => {
 
 // POST /api/boards/:boardId/cards/:cardId/comments
 router.post("/", async (req, res, next) => {
+
   try {
     const { message, author } = req.body;
     const { cardId } = req.params;
