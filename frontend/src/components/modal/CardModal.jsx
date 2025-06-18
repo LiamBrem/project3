@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Modal.css";
 import { VscClose } from "react-icons/vsc";
-import GifSearch from "./GifSearch";
+import GifSearch from "./gif/GifSearch";
 
 const CardModal = ({ isOpen, onClose, onSubmit }) => {
   const [title, setTitle] = useState("");
