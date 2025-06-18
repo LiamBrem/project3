@@ -1,25 +1,24 @@
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { CONNECTION_URL } from "../../utils/constants";
-import CardCard from "../cards/CardCard";
+import { useParams } from "react-router-dom";
 import { VscChevronLeft } from "react-icons/vsc";
 import { VscAdd } from "react-icons/vsc";
-import "./boardDetail.css";
+import { CONNECTION_URL } from "../../utils/constants";
+import CardCard from "./CardCard";
 import CardModal from "../modal/CardModal";
 import CommentModal from "../modal/CommentModal";
+import "./boardDetail.css";
 
 const BoardDetail = () => {
-  const { id } = useParams();
   const [cards, setCards] = useState([]);
   const [board, setBoard] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCommentModalOpen, setIsCommentModalOpen] = useState(false);
   const [activeCard, setActiveCard] = useState(null);
 
-  const boardId = id;
+  const boardId = useParams().id;
 
   useEffect(() => {
-    // fetch board info
+    // fetch board info - for title
     fetch(`${CONNECTION_URL}/api/boards/${boardId}`)
       .then((res) => res.json())
       .then(setBoard);
@@ -33,11 +32,6 @@ const BoardDetail = () => {
   const handleDelete = (id) => {
     // redisplay the boards - it already got deleted from the backend
     setCards((prevCards) => prevCards.filter((card) => card.id !== id));
-  };
-
-  const handleClick = (e) => {
-    e.stopPropagation();
-    setIsCommentModalOpen(true);
   };
 
   const handleModalSubmit = async (data) => {
@@ -60,13 +54,13 @@ const BoardDetail = () => {
       alert("Failed to add card.");
     }
   };
-  
+
   const handleCommentClick = (card) => {
     setActiveCard(card);
     setIsCommentModalOpen(true);
   };
 
-  if (!board) return <div>Loading...</div>;
+  if (!board) return <h1>Loading...</h1>;
 
   return (
     <div className="board-detail">

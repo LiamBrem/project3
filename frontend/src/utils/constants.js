@@ -12,4 +12,4 @@ export const CATEGORIES = [
   "inspiration",
 ];
 
-export const CONNECTION_URL = "http://localhost:3000";
+export const CONNECTION_URL = import.meta.env.VITE_CONNECTION_URL || "http://localhost:3000";

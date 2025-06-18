@@ -4,7 +4,7 @@ import "./App.css";
 import Search from "./components/outer/Search";
 import Sort from "./components/outer/Sort";
 import BoardList from "./components/boards/boardList";
-import BoardDetail from "./components/boards/BoardDetail";
+import BoardDetail from "./components/cards/BoardDetail";
 import Modal from "./components/modal/Modal";
 import { SORT_OPTIONS, CONNECTION_URL } from "./utils/constants";
 import { VscAdd } from "react-icons/vsc";
