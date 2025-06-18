@@ -6,7 +6,7 @@ import { CONNECTION_URL } from "../../utils/constants";
 import CardCard from "./CardCard";
 import CardModal from "../modal/CardModal";
 import CommentModal from "../modal/CommentModal";
-import "./boardDetail.css";
+import "./BoardDetail.css";
 
 const BoardDetail = () => {
   const [cards, setCards] = useState([]);
