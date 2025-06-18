@@ -30,7 +30,6 @@ build/
 *.local
 
 # Prisma-related
-backend/prisma/migrations/   
 backend/prisma/generated/    
 backend/generated/prisma/ 
 
