@@ -2,7 +2,7 @@ import BoardCard from "./BoardCard";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CONNECTION_URL } from "../../utils/constants";
-import "./boardList.css";
+import "./BoardList.css";
 
 const fetchBoardData = async (searchCriteria, sortCriteria) => {
   let url = `${CONNECTION_URL}/api/boards?searchCriteria=${searchCriteria}&sortCriteria=${sortCriteria}`;
