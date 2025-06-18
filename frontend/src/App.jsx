@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Search from "./components/outer/Search";
 import Sort from "./components/outer/Sort";
-import BoardList from "./components/boards/boardList";
+import BoardList from "./components/boards/BoardList";
 import BoardDetail from "./components/cards/BoardDetail";
 import Modal from "./components/modal/Modal";
 import { SORT_OPTIONS, CONNECTION_URL } from "./utils/constants";
