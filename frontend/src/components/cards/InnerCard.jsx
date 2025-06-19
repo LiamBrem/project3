@@ -1,6 +1,8 @@
 import { VscTrash } from "react-icons/vsc";
-import "./CardCard.css";
+import "./InnerCard.css";
 import { CONNECTION_URL } from "../../utils/constants";
+import { VscPinned } from "react-icons/vsc";
+import { VscPinnedDirty } from "react-icons/vsc";
 import { useState, useEffect } from "react";
 
 const CardCard = ({
@@ -12,8 +14,10 @@ const CardCard = ({
   upvotes,
   onDelete,
   onCommentClick,
+  pinned,
 }) => {
-  const [localUpvotes, setLocalUpvotes] = useState(upvotes); 
+  const [localUpvotes, setLocalUpvotes] = useState(upvotes);
+  const [isPinned, setIsPinned] = useState(pinned);
 
   const handleDelete = async (e) => {
     e.stopPropagation();
@@ -36,12 +40,27 @@ const CardCard = ({
       }
       const data = await response.json();
       setLocalUpvotes(data.upvotes);
-    } catch (err) { 
+    } catch (err) {
       console.error("Failed to upvote card:", err);
     }
   };
 
+  const handlePin = async (e) => {
+    e.stopPropagation();
+    const newPinned = !isPinned;
+    setIsPinned(newPinned);
 
+    const endpoint = newPinned ? "pin" : "unpin";
+    try {
+      const url = `${CONNECTION_URL}/api/boards/${boardId}/cards/${id}/${endpoint}`;
+      const response = await fetch(url, { method: "PUT" });
+      if (!response.ok) throw new Error("Failed to update pin status");
+      if (onPinChange) onPinChange(id, newPinned);
+    } catch (err) {
+      setIsPinned((prev) => !prev);
+      alert("Failed to update pin status.");
+    }
+  };
 
   return (
     <article className="card-card" onClick={onCommentClick}>
@@ -53,10 +72,14 @@ const CardCard = ({
           <div className="delete-button" onClick={handleDelete}>
             <VscTrash className="delete-icon" />
           </div>
-          <div className="upvotes">
+          <div className="bottom-row">
             <button onClick={handleUpvote}>{`Upvotes: ${localUpvotes}`}</button>
           </div>
+          <div className="pin-icon" onClick={handlePin}>
+            {isPinned ? <VscPinnedDirty /> : <VscPinned />}
+          </div>
         </div>
+        <div className="upvotes"></div>
       </div>
     </article>
   );
