@@ -1,8 +1,14 @@
 .title-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
+  padding: 2rem;;
   text-shadow: white 0 0 10px, white 0 0 20px, white 0 0 30px;
+}
+
+.title-container h1 {
+  margin: 0;
 }
 
 .banner-second-row {
