@@ -6,6 +6,7 @@ import Sort from "./components/outer/Sort";
 import BoardList from "./components/boards/BoardList";
 import BoardDetail from "./components/cards/BoardDetail";
 import Modal from "./components/modal/Modal";
+import ThemeToggle from "./components/outer/ThemeToggle";
 import { SORT_OPTIONS, CONNECTION_URL } from "./utils/constants";
 import { VscAdd } from "react-icons/vsc";
 
@@ -34,6 +35,7 @@ function App() {
       <header className="banner">
         <div className="title-container">
           <h1>Kudos Board</h1>
+          <ThemeToggle />
         </div>
         <div className="rain"></div>
       </header>

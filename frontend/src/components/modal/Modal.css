@@ -4,7 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(30, 30, 30, 0.7);
+  background: #00000080;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,8 +12,8 @@
 }
 
 .modal-content {
-  background: #232323;
-  color: #fff;
+  background: var(--bg-color);
+  color: var(--text-color);
   padding: 2rem 2.5rem;
   min-width: 320px;
   max-width: 50vw;
@@ -31,7 +31,7 @@
   right: 1rem;
   background: transparent;
   border: none;
-  color: #fff;
+  color: var(--text-color);
   font-size: 2rem;
   cursor: pointer;
   padding: 0.5rem;
@@ -61,8 +61,8 @@
   padding: 0.6rem 1rem;
   border-radius: 6px;
   border: 1.5px solid #0355ba;
-  background: #313131;
-  color: #fff;
+  background: var(--bg-color);
+  color: var(--text-color);
   font-size: 1rem;
   outline: none;
   margin-top: 0.2rem;
@@ -78,7 +78,7 @@
   margin-top: 1rem;
   padding: 0.7rem 1.5rem;
   background: #0355ba;
-  color: #fff;
+  color: var(--text-color);
   border: none;
   font-size: 1.1rem;
   cursor: pointer;
