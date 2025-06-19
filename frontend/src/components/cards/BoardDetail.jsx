@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { VscChevronLeft } from "react-icons/vsc";
 import { VscAdd } from "react-icons/vsc";
 import { CONNECTION_URL } from "../../utils/constants";
-import CardCard from "./CardCard";
+import InnerCard from "./InnerCard";
 import CardModal from "../modal/CardModal";
 import CommentModal from "../modal/CommentModal";
 import "./BoardDetail.css";
@@ -33,6 +33,20 @@ const BoardDetail = () => {
     // redisplay the boards - it already got deleted from the backend
     setCards((prevCards) => prevCards.filter((card) => card.id !== id));
   };
+
+  const handlePinChange = (cardId, newPinned) => {
+  setCards(prevCards => {
+    const updated = prevCards.map(card =>
+      card.id === cardId ? { ...card, pinned: newPinned } : card
+    );
+    return updated.sort((a, b) => {
+      if (a.pinned === b.pinned) {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      }
+      return b.pinned - a.pinned;
+    });
+  });
+};
 
   const handleModalSubmit = async (data) => {
     try {
@@ -79,7 +93,7 @@ const BoardDetail = () => {
       </div>
       <section className="card-list">
         {cards.map((card) => (
-          <CardCard
+          <InnerCard
             key={card.id}
             boardId={boardId}
             id={card.id}
@@ -89,6 +103,8 @@ const BoardDetail = () => {
             upvotes={card.upvotes}
             onDelete={handleDelete}
             onCommentClick={() => handleCommentClick(card)}
+            pinned={card.pinned}
+            onPinChange={handlePinChange}
           />
         ))}
       </section>

@@ -5,7 +5,7 @@ import { VscPinned } from "react-icons/vsc";
 import { VscPinnedDirty } from "react-icons/vsc";
 import { useState, useEffect } from "react";
 
-const CardCard = ({
+const InnerCard = ({
   boardId,
   id,
   message,
@@ -15,6 +15,7 @@ const CardCard = ({
   onDelete,
   onCommentClick,
   pinned,
+  onPinChange,
 }) => {
   const [localUpvotes, setLocalUpvotes] = useState(upvotes);
   const [isPinned, setIsPinned] = useState(pinned);
@@ -44,6 +45,10 @@ const CardCard = ({
       console.error("Failed to upvote card:", err);
     }
   };
+
+  useEffect(() => {
+    setIsPinned(pinned);
+  }, [pinned]);
 
   const handlePin = async (e) => {
     e.stopPropagation();
@@ -85,4 +90,4 @@ const CardCard = ({
   );
 };
 
-export default CardCard;
+export default InnerCard;

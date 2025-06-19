@@ -1,13 +1,9 @@
 import { useState } from "react";
 import { VscTrash } from "react-icons/vsc";
-import { VscPinned } from "react-icons/vsc";
-import { VscPinnedDirty } from "react-icons/vsc";
 import { CONNECTION_URL } from "../../utils/constants";
 import "./BoardCard.css";
 
 const BoardCard = ({ id, title, author, imageUrl, onDelete, onClick }) => {
-  const [isPinned, setIsPinned] = useState(false);
-
   const handleDelete = async (e) => {
     e.stopPropagation();
     const url = `${CONNECTION_URL}/api/boards/${id}`;
@@ -19,11 +15,6 @@ const BoardCard = ({ id, title, author, imageUrl, onDelete, onClick }) => {
     }
   };
 
-  const handlePin = (e) => {
-    e.stopPropagation();
-    setIsPinned(!isPinned);
-  };
-
   return (
     <article className="board-card" onClick={onClick}>
       <img src={imageUrl} alt={"board image"} />
@@ -33,9 +24,6 @@ const BoardCard = ({ id, title, author, imageUrl, onDelete, onClick }) => {
         <div className="bottom-row">
           <div className="delete-button" onClick={handleDelete}>
             <VscTrash className="delete-icon" />
-          </div>
-          <div className="pin-icon" onClick={handlePin}>
-            {isPinned ? <VscPinnedDirty /> : <VscPinned />}
           </div>
         </div>
       </div>
