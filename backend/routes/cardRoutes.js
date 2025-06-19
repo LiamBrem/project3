@@ -50,6 +50,33 @@ router.put("/:cardId/upvote", async (req, res, next) => {
   }
 });
 
+// PUT /api/boards/:boardId/cards/:cardId/pin
+router.put("/:cardId/pin", async (req, res, next) => {
+  console.log(req.params);
+  try {
+    const card = await prisma.card.update({
+      where: { id: parseInt(req.params.cardId) },
+      data: { pinned: true },
+    });
+    res.json(card);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// PUT /api/boards/:boardId/cards/:cardId/unpin
+router.put("/:cardId/unpin", async (req, res, next) => {
+  try {
+    const card = await prisma.card.update({
+      where: { id: parseInt(req.params.cardId) },
+      data: { pinned: false },
+    });
+    res.json(card);
+  } catch (err) {
+    next(err);
+  }
+});
+
 // DELETE /api/boards/:boardId/cards/:cardId
 router.delete("/:cardId", async (req, res, next) => {
   try {

@@ -59,3 +59,19 @@
   transform: scale(1.04);
   border: 2.5px solid #0355ba;
 }
+
+.bottom-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pin-icon{
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.pin-icon:hover {
+  color: #ff4d4d;
+}
