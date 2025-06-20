@@ -1,4 +1,4 @@
-.card-card {
+.inner-card {
   display: flex;
   flex-direction: column;
   width: 220px;
@@ -12,19 +12,20 @@
   border: 2px solid #444;
 }
 
-.card-card img {
+.inner-card img {
   width: 100%;
   height: 150px;
   object-fit: cover;
   background: #111;
 }
 
-.card-card-header {
+.inner-card-header {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 1rem;
+  
 }
 
 .card-message {
@@ -43,7 +44,7 @@
   margin: 0 0 1rem 0;
 }
 
-.card-button {
+.delete-button {
   align-self: flex-end;
   cursor: pointer;
   color: var(--text-color);
@@ -51,11 +52,11 @@
   transition: color 0.2s;
 }
 
-.card-button:hover {
+.delete-button:hover {
   color: #ff4d4d;
 }
 
-.card-card:hover {
+.inner-card:hover {
   transform: scale(1.04);
   border: 2.5px solid #0355ba;
 }
@@ -64,6 +65,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.bottom-row button {
+  padding: 0.3rem 1rem;
+  font-size: 1rem;
+  margin: 0;
+  height: auto;
+  min-width: 90px;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pin-icon{

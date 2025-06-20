@@ -80,11 +80,11 @@ const BoardDetail = () => {
     <div className="board-detail">
       <div className="card-header">
         <div className="back-button" onClick={() => window.history.back()}>
-          <button>
+          <button className="back-button">
             <VscChevronLeft />
           </button>
         </div>
-        <h2 className="board-title">{board.title}</h2>
+        <h1 className="board-title">{board.title}</h1>
         <div className="add">
           <button className="add-button" onClick={() => setIsModalOpen(true)}>
             <VscAdd />

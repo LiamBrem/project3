@@ -68,24 +68,21 @@ const InnerCard = ({
   };
 
   return (
-    <article className="card-card" onClick={onCommentClick}>
+    <article className="inner-card" onClick={onCommentClick}>
       <img src={gifUrl} alt={"card gif"} />
-      <div className="card-card-header">
+      <div className="inner-card-header">
         <h1 className="card-message">{message}</h1>
         <h2 className="card-author">By {author}</h2>
         <div className="bottom-row">
-          <div className="delete-button" onClick={handleDelete}>
-            <VscTrash className="delete-icon" />
-          </div>
-          <div className="bottom-row">
+            <div className="delete-button" onClick={handleDelete}>
+              <VscTrash className="delete-icon" />
+            </div>
             <button onClick={handleUpvote}>{`Upvotes: ${localUpvotes}`}</button>
-          </div>
-          <div className="pin-icon" onClick={handlePin}>
-            {isPinned ? <VscPinnedDirty /> : <VscPinned />}
+            <div className="pin-icon" onClick={handlePin}>
+              {isPinned ? <VscPinnedDirty /> : <VscPinned />}
+            </div>
           </div>
         </div>
-        <div className="upvotes"></div>
-      </div>
     </article>
   );
 };

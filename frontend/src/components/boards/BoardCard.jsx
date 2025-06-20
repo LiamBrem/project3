@@ -17,7 +17,7 @@ const BoardCard = ({ id, title, author, imageUrl, onDelete, onClick }) => {
 
   return (
     <article className="board-card" onClick={onClick}>
-      <img src={imageUrl} alt={"board image"} />
+      <img src={"https://picsum.photos/400/600"} alt={"board image"} />
       <div className="board-card-header">
         <h1 className="board-title">{title}</h1>
         <h2 className="board-author">By {author}</h2>
