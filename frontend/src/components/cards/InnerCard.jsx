@@ -1,9 +1,7 @@
-import { VscTrash } from "react-icons/vsc";
-import "./InnerCard.css";
-import { CONNECTION_URL } from "../../utils/constants";
-import { VscPinned } from "react-icons/vsc";
-import { VscPinnedDirty } from "react-icons/vsc";
 import { useState, useEffect } from "react";
+import { CONNECTION_URL } from "../../utils/constants";
+import { VscPinned, VscTrash, VscPinnedDirty } from "react-icons/vsc";
+import "./InnerCard.css";
 
 const InnerCard = ({
   boardId,
@@ -20,11 +18,16 @@ const InnerCard = ({
   const [localUpvotes, setLocalUpvotes] = useState(upvotes);
   const [isPinned, setIsPinned] = useState(pinned);
 
+  if (!id || !boardId) return null;
+
+  const getCardUrl = (path = "") => {
+    return `${CONNECTION_URL}/api/boards/${boardId}/cards/${id}/${path}`;
+  };
+
   const handleDelete = async (e) => {
     e.stopPropagation();
-    const url = `${CONNECTION_URL}/api/boards/${boardId}/cards/${id}`;
     try {
-      await fetch(url, { method: "DELETE" });
+      await fetch(getCardUrl(), { method: "DELETE" });
       if (onDelete) onDelete(id);
     } catch (err) {
       console.error("Failed to delete board:", err);
@@ -33,9 +36,8 @@ const InnerCard = ({
 
   const handleUpvote = async (e) => {
     e.stopPropagation();
-    const url = `${CONNECTION_URL}/api/boards/${boardId}/cards/${id}/upvote`;
     try {
-      const response = await fetch(url, { method: "PUT" });
+      const response = await fetch(getCardUrl("upvote"), { method: "PUT" });
       if (!response.ok) {
         throw new Error("Failed to upvote card");
       }
@@ -46,10 +48,6 @@ const InnerCard = ({
     }
   };
 
-  useEffect(() => {
-    setIsPinned(pinned);
-  }, [pinned]);
-
   const handlePin = async (e) => {
     e.stopPropagation();
     const newPinned = !isPinned;
@@ -57,8 +55,7 @@ const InnerCard = ({
 
     const endpoint = newPinned ? "pin" : "unpin";
     try {
-      const url = `${CONNECTION_URL}/api/boards/${boardId}/cards/${id}/${endpoint}`;
-      const response = await fetch(url, { method: "PUT" });
+      const response = await fetch(getCardUrl(endpoint), { method: "PUT" });
       if (!response.ok) throw new Error("Failed to update pin status");
       if (onPinChange) onPinChange(id, newPinned);
     } catch (err) {
@@ -74,15 +71,15 @@ const InnerCard = ({
         <h1 className="card-message">{message}</h1>
         <h2 className="card-author">By {author}</h2>
         <div className="bottom-row">
-            <div className="delete-button" onClick={handleDelete}>
-              <VscTrash className="delete-icon" />
-            </div>
-            <button onClick={handleUpvote}>{`Upvotes: ${localUpvotes}`}</button>
-            <div className="pin-icon" onClick={handlePin}>
-              {isPinned ? <VscPinnedDirty /> : <VscPinned />}
-            </div>
+          <div className="delete-button" onClick={handleDelete}>
+            <VscTrash className="delete-icon" />
+          </div>
+          <button onClick={handleUpvote}>{`Upvotes: ${localUpvotes}`}</button>
+          <div className="pin-icon" onClick={handlePin}>
+            {isPinned ? <VscPinnedDirty /> : <VscPinned />}
           </div>
         </div>
+      </div>
     </article>
   );
 };

@@ -9,6 +9,8 @@ import Modal from "./components/modal/Modal";
 import ThemeToggle from "./components/outer/ThemeToggle";
 import { SORT_OPTIONS, CONNECTION_URL } from "./utils/constants";
 import { VscAdd } from "react-icons/vsc";
+import { BrowserRouter } from "react-router-dom";
+
 
 function App() {
   const [search, setSearch] = useState("");
@@ -31,7 +33,8 @@ function App() {
   };
 
   return (
-    <>
+    <BrowserRouter>
+
       <header className="banner">
         <div className="title-container">
           <h1>Kudos Board</h1>
@@ -78,7 +81,7 @@ function App() {
         onClose={() => setModalOpen(false)}
         onSubmit={handleModalSubmit}
       />
-    </>
+    </BrowserRouter >
   );
 }
 
