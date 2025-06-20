@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { CONNECTION_URL } from "../../utils/constants";
 import { VscPinned, VscTrash, VscPinnedDirty } from "react-icons/vsc";
 import "./InnerCard.css";
@@ -16,7 +16,6 @@ const InnerCard = ({
   onPinChange,
 }) => {
   const [localUpvotes, setLocalUpvotes] = useState(upvotes);
-  const [isPinned, setIsPinned] = useState(pinned);
 
   if (!id || !boardId) return null;
 
@@ -50,8 +49,7 @@ const InnerCard = ({
 
   const handlePin = async (e) => {
     e.stopPropagation();
-    const newPinned = !isPinned;
-    setIsPinned(newPinned);
+    const newPinned = !pinned;
 
     const endpoint = newPinned ? "pin" : "unpin";
     try {
@@ -59,24 +57,25 @@ const InnerCard = ({
       if (!response.ok) throw new Error("Failed to update pin status");
       if (onPinChange) onPinChange(id, newPinned);
     } catch (err) {
-      setIsPinned((prev) => !prev);
       alert("Failed to update pin status.");
     }
   };
+
+  const getAuthorLine = () => (author ? `By ${author}` : "Anonymous");
 
   return (
     <article className="inner-card" onClick={onCommentClick}>
       <img src={gifUrl} alt={"card gif"} />
       <div className="inner-card-header">
         <h1 className="card-message">{message}</h1>
-        <h2 className="card-author">By {author}</h2>
+        <h2 className="card-author">{getAuthorLine()}</h2>
         <div className="bottom-row">
           <div className="delete-button" onClick={handleDelete}>
             <VscTrash className="delete-icon" />
           </div>
           <button onClick={handleUpvote}>{`Upvotes: ${localUpvotes}`}</button>
           <div className="pin-icon" onClick={handlePin}>
-            {isPinned ? <VscPinnedDirty /> : <VscPinned />}
+            {pinned ? <VscPinnedDirty /> : <VscPinned />}
           </div>
         </div>
       </div>

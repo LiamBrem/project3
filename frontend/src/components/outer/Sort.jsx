@@ -1,5 +1,5 @@
-import "./Sort.css";
 import { SORT_OPTIONS } from "../../utils/constants";
+import "./Sort.css";
 
 const Sort = ({ value, onSort }) => {
   const submitSort = (e) => {

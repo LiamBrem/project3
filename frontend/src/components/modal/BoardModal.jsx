@@ -3,8 +3,6 @@ import { CATEGORIES } from "../../utils/constants";
 import { VscClose } from "react-icons/vsc";
 import "./Modal.css";
 
-
-
 const Modal = ({ isOpen, onClose, onSubmit }) => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState(CATEGORIES[0]);
@@ -15,6 +13,12 @@ const Modal = ({ isOpen, onClose, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit({ title, category, author });
+  };
+
+  const categoryMap = {
+    celebration: "Celebration",
+    thankYou: "Thank You",
+    inspiration: "Inspiration",
   };
 
   return (
@@ -39,9 +43,9 @@ const Modal = ({ isOpen, onClose, onSubmit }) => {
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             >
-              {CATEGORIES.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat}
+              {CATEGORIES.map((category) => (
+                <option key={category} value={category}>
+                  {categoryMap[category]}
                 </option>
               ))}
             </select>

@@ -5,6 +5,7 @@
   width: 100%;
   padding: 2rem;;
   text-shadow: white 0 0 10px, white 0 0 20px, white 0 0 30px;
+  border-bottom: 2px solid rgb(116, 116, 116);
 }
 
 .title-container h1 {

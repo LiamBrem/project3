@@ -1,40 +1,60 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import "./App.css";
+import { SORT_OPTIONS, CONNECTION_URL } from "./utils/constants";
+import { VscAdd } from "react-icons/vsc";
 import Search from "./components/outer/Search";
 import Sort from "./components/outer/Sort";
 import BoardList from "./components/boards/BoardList";
 import BoardDetail from "./components/cards/BoardDetail";
-import Modal from "./components/modal/Modal";
+import BoardModal from "./components/modal/BoardModal";
 import ThemeToggle from "./components/outer/ThemeToggle";
-import { SORT_OPTIONS, CONNECTION_URL } from "./utils/constants";
-import { VscAdd } from "react-icons/vsc";
-import { BrowserRouter } from "react-router-dom";
-
+import "./App.css";
 
 function App() {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState(SORT_OPTIONS.ALL);
+  const [boards, setBoards] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
-  const [refreshBoards, setRefreshBoards] = useState(false);
+
+  const fetchBoardData = async (searchCriteria, sortCriteria) => {
+    let url = `${CONNECTION_URL}/api/boards?searchCriteria=${searchCriteria}&sortCriteria=${sortCriteria}`;
+
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Failed to fetch movie data");
+    }
+    const data = await response.json();
+    return data;
+  };
 
   const handleModalSubmit = async (data) => {
     try {
-      await fetch(`${CONNECTION_URL}/api/boards`, {
+      const response = await fetch(`${CONNECTION_URL}/api/boards`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
+      if (!response.ok) {
+        throw new Error("Failed to add board");
+      }
       setModalOpen(false);
-      setRefreshBoards((prev) => !prev); // trigger a refresh
+      const updatedBoards = await fetchBoardData(search, sort);
+      setBoards(updatedBoards);
     } catch (err) {
       alert("Failed to add board.");
     }
   };
 
-  return (
-    <BrowserRouter>
+  useEffect(() => {
+    const fetchBoards = async () => {
+      const data = await fetchBoardData(search, sort);
+      setBoards(data);
+    };
+    fetchBoards();
+  }, [search, sort]);
 
+  return (
+    <>
       <header className="banner">
         <div className="title-container">
           <h1>Kudos Board</h1>
@@ -62,11 +82,7 @@ function App() {
                 </div>
               </div>
               <section className="content">
-                <BoardList
-                  searchCriteria={search}
-                  sortCriteria={sort}
-                  refresh={refreshBoards}
-                />
+                <BoardList boards={boards} setBoards={setBoards} />
               </section>
             </>
           }
@@ -76,12 +92,12 @@ function App() {
       <footer className="footer">
         <h3>By Liam Brem</h3>
       </footer>
-      <Modal
+      <BoardModal
         isOpen={isModalOpen}
         onClose={() => setModalOpen(false)}
         onSubmit={handleModalSubmit}
       />
-    </BrowserRouter >
+    </>
   );
 }
 

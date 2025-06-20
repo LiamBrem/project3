@@ -1,14 +1,13 @@
 import { useState } from "react";
-import "./Modal.css";
 import { VscClose } from "react-icons/vsc";
 import GifSearch from "./gif/GifSearch";
+import "./Modal.css";
 
 const CardModal = ({ isOpen, onClose, onSubmit }) => {
   const [title, setTitle] = useState("");
   const [message, setDescription] = useState("");
   const [author, setAuthor] = useState("");
   const [gifUrl, setGifUrl] = useState("");
-
 
   if (!isOpen) return null;
 
