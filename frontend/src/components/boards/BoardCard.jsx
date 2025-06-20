@@ -2,7 +2,7 @@ import { VscTrash } from "react-icons/vsc";
 import { CONNECTION_URL } from "../../utils/constants";
 import "./BoardCard.css";
 
-const BoardCard = ({ id, title, author, onDelete, onClick }) => {
+const BoardCard = ({ id, title, author, onDelete, onClick, category }) => {
   const handleDelete = async (e) => {
     e.stopPropagation();
     const url = `${CONNECTION_URL}/api/boards/${id}`;
@@ -22,6 +22,7 @@ const BoardCard = ({ id, title, author, onDelete, onClick }) => {
       <div className="board-card-header">
         <h1 className="board-title">{title}</h1>
         <h2 className="board-author">{getAuthorLine()}</h2>
+        <h3 className="board-category">{category}</h3>
         <div className="bottom-row">
           <div className="delete-button" onClick={handleDelete}>
             <VscTrash className="delete-icon" />

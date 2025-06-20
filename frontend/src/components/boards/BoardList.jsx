@@ -25,6 +25,7 @@ const BoardList = ({ boards, setBoards }) => {
           author={board.author}
           onDelete={() => handleDelete(board.id)}
           onClick={() => handleBoardOnClick(board.id)}
+          category={board.category}
         />
       ))}
     </section>
