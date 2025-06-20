@@ -52,7 +52,6 @@ router.put("/:cardId/upvote", async (req, res, next) => {
 
 // PUT /api/boards/:boardId/cards/:cardId/pin
 router.put("/:cardId/pin", async (req, res, next) => {
-  console.log(req.params);
   try {
     const card = await prisma.card.update({
       where: { id: parseInt(req.params.cardId) },

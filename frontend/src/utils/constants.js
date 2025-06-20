@@ -7,9 +7,9 @@ export const SORT_OPTIONS = {
 };
 
 export const CATEGORIES = [
-  "celebration",
-  "thankYou",
-  "inspiration",
+  SORT_OPTIONS.CELEBRATION,
+  SORT_OPTIONS.THANK_YOU,
+  SORT_OPTIONS.INSPIRATION,
 ];
 
 export const CONNECTION_URL = import.meta.env.VITE_CONNECTION_URL || "http://localhost:3000";

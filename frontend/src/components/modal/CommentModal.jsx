@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import "./Modal.css";
 import { VscClose } from "react-icons/vsc";
 import { CONNECTION_URL } from "../../utils/constants";
+import "./Modal.css";
 
 const CommentModal = ({
   isOpen,
@@ -46,7 +46,7 @@ const CommentModal = ({
       });
   };
 
-  const fetchAllComments = () => {
+  useEffect(() => {
     fetch(`${CONNECTION_URL}/api/boards/${boardId}/cards/${cardId}/comments`)
       .then((response) => {
         if (!response.ok) {
@@ -61,10 +61,6 @@ const CommentModal = ({
         console.error("Error fetching comments:", error);
         alert("Failed to fetch comments.");
       });
-  };
-
-  useEffect(() => {
-    fetchAllComments();
   }, [boardId, comment]);
 
   return (
@@ -80,7 +76,6 @@ const CommentModal = ({
           <VscClose />
         </button>
         <div className="modal-lower">
-          {" "}
           <form onSubmit={handleSubmit}>
             <label>
               Comment:

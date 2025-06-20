@@ -39,6 +39,7 @@ const BoardDetail = () => {
     const updated = prevCards.map(card =>
       card.id === cardId ? { ...card, pinned: newPinned } : card
     );
+    // sort on the frontend
     return updated.sort((a, b) => {
       if (a.pinned === b.pinned) {
         return new Date(b.createdAt) - new Date(a.createdAt);

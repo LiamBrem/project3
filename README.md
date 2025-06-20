@@ -1,5 +1,3 @@
-📝 `NOTE` Use this template to initialize the contents of a README.md file for your application. As you work on your assignment over the course of the week, update the required or stretch features lists to indicate which features you have completed by changing `[ ]` to `[x]`. (🚫 Remove this paragraph before submitting your assignment.)
-
 ## Unit Assignment: Kudos Board
 
 Submitted by: **Liam Brem**
@@ -137,28 +135,27 @@ Deployed Application (**required**): [Kudos Board Deployed Site](https://project
 
 ### Walkthrough Video
 
-`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. Ensure your walkthrough showcases the presence and/or functionality of all features you implemented above (check them off as you film!). Pay attention to any **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS** checkboxes listed above to ensure graders see the full functionality of your website! (🚫 Remove this paragraph after adding walkthrough video)
-
-`ADD_EMBEDDED_CODE_HERE`
+https://www.loom.com/share/458c98b9ff22458cbdd1597944ea6643?sid=1ca1d0b2-9277-4b22-b353-477e816b3f4f
 
 ### Reflection
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+Yes, the labs were very helpful, especially when getting started setting up the backend & creating the first DB schemas. However, I wish the instructors went a little more in depth about what should be an API endpoint & what would be passed in through the body.
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-Add your response here
+I would have taken more time to style my app & I would've written my code in a cleaner way so that it's easier to be expanded upon.
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+I would have spent some time developing a powerpoint presentation to ensure the demo was more structured. 
 
 ### Open-source libraries used
 
-- Add any links to open-source libraries used in your project.
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [Giphy API](https://developers.giphy.com/)
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+* Sout out to Michelle for helping me resolve all of the issues that came w/ deploying my project. It was a really big help.
